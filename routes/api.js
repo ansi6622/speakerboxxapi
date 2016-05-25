@@ -4,6 +4,34 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+function checkUser (data) {
+  return knex('users').where(data).first()
+    .then(function (author) {
+      return author
+    })
+}
+
+function checkToken (req,res,next){
+  if (req.headers.authorization) {
+    const token = req.headers.authorization.split(' ')[1];
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    knex('users').where({id: payload.id}).first().then(function (user) {
+      if (user) {
+        res.json({id: user.id, name: user.name})
+      } else {
+        res.status(403).json({
+          error: "Invalid ID"
+        })
+      }
+    })
+  } else {
+      res.status(403).json({
+        error: "No token"
+      })
+    }
+}
+
+router.get('/me', checkToken);
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.status(222).json('Setup your SPA');
