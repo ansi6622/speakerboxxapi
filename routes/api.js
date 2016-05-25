@@ -23,7 +23,6 @@ router.post('/signup', function(req, res, next) {
       errors: errors
     })
   } else {
-
     knex('users')
       .whereRaw('lower(email) = ?', req.body.email.toLowerCase())
       .count()
