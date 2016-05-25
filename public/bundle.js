@@ -23325,7 +23325,6 @@
 	var API = '/api/v1';
 	
 	function verifyUser() {
-	  console.log(_jwt_helper2.default.fetch());
 	  var request = (0, _axios2.default)({
 	    url: API + '/me',
 	    method: 'GET',
@@ -23346,7 +23345,6 @@
 	}
 	
 	function userLogin(credentials) {
-	  console.log(_jwt_helper2.default.fetch());
 	  var request = _axios2.default.post(API + '/login', credentials);
 	  return {
 	    type: LOG_IN,
@@ -24940,7 +24938,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  padding: 15px;\n  font: 14px \"Lucida Grande\", Helvetica, Arial, sans-serif;\n  background-color: #2d2c2c; }\n\nmain {\n  clear: both; }\n\nh2 {\n  color: white; }\n\np {\n  color: white; }\n\nnav {\n  margin-bottom: 2%; }\n\n.icon-link {\n  display: block;\n  margin-right: 1%;\n  margin-bottom: 1%;\n  width: 280px;\n  height: 300px;\n  color: white;\n  background: CadetBlue;\n  border-radius: 5px 80px 5px 5px;\n  text-decoration: none; }\n  .icon-link:hover {\n    text-decoration: none;\n    color: rgba(0, 0, 0, 0.74); }\n\n.qs-list {\n  border-radius: 8px;\n  border: none;\n  color: white; }\n\n.quick-speech-button {\n  color: white;\n  padding: 5% 0;\n  width: 100%;\n  height: 100px;\n  line-height: 40px;\n  margin: 2% auto;\n  background-color: rgba(90, 157, 228, 0.83);\n  font-size: 18px; }\n\n#dashboard {\n  margin: 5% 2%;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  align-items: center; }\n\n.dash-box {\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-around; }\n\nspan.glyphicon {\n  font-size: 8em;\n  text-align: center;\n  padding-top: 15%; }\n\nform.login {\n  text-align: center;\n  margin-top: 15%; }\n\ninput.login {\n  margin: 2% 0; }\n\nform.register {\n  text-align: center;\n  margin-top: 15%; }\n\ninput.register {\n  margin: 2% 0; }\n\n.speak-box {\n  clear: both; }\n\n.speak-input {\n  height: 50px;\n  width: 40vw !important;\n  font-size: 1.5em; }\n\ninput[type='submit'] {\n  height: 50px;\n  font-size: 1.5em; }\n\nh1 {\n  color: DodgerBlue; }\n\nh3 {\n  color: white; }\n\nh2 {\n  color: white; }\n\np {\n  color: white; }\n", ""]);
+	exports.push([module.id, "body {\n  padding: 15px;\n  font: 14px \"Lucida Grande\", Helvetica, Arial, sans-serif;\n  background-color: #2d2c2c; }\n\nmain {\n  clear: both; }\n\nh2 {\n  color: white; }\n\np {\n  color: white; }\n\nnav {\n  margin-bottom: 2%; }\n\n.icon-link {\n  display: block;\n  margin-right: 1%;\n  margin-bottom: 1%;\n  width: 280px;\n  height: 300px;\n  color: white;\n  background: CadetBlue;\n  border-radius: 5px 80px 5px 5px;\n  text-decoration: none; }\n  .icon-link:hover {\n    text-decoration: none;\n    color: rgba(0, 0, 0, 0.74); }\n    .icon-link:hover .icon-link-text {\n      color: rgba(0, 0, 0, 0.74); }\n\n.qs-list {\n  border-radius: 8px;\n  border: none;\n  color: white; }\n\n.quick-speech-button {\n  color: white;\n  padding: 5% 0;\n  width: 100%;\n  height: 100px;\n  line-height: 40px;\n  margin: 2% auto;\n  background-color: rgba(90, 157, 228, 0.83);\n  font-size: 18px; }\n\n#dashboard {\n  margin: 5% 2%;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  align-items: center; }\n\n.dash-box {\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-around; }\n\nspan.glyphicon {\n  font-size: 8em;\n  text-align: center;\n  padding-top: 15%; }\n\nform.login {\n  text-align: center;\n  margin-top: 15%; }\n\ninput.login {\n  margin: 2% 0; }\n\nform.register {\n  text-align: center;\n  margin-top: 15%; }\n\ninput.register {\n  margin: 2% 0; }\n\n.speak-box {\n  clear: both; }\n\n.speak-input {\n  height: 50px;\n  width: 40vw !important;\n  font-size: 1.5em; }\n\ninput[type='submit'] {\n  height: 50px;\n  font-size: 1.5em; }\n\nh1 {\n  color: DodgerBlue; }\n\nh3 {\n  color: white; }\n\nh2 {\n  color: white; }\n\np {\n  color: white; }\n", ""]);
 	
 	// exports
 
@@ -25005,6 +25003,10 @@
 	
 	var _MyPhrases2 = _interopRequireDefault(_MyPhrases);
 	
+	var _Constructor = __webpack_require__(307);
+	
+	var _Constructor2 = _interopRequireDefault(_Constructor);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Routes = function Routes() {
@@ -25024,7 +25026,8 @@
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _DashIndex2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _ProfilePage2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/quick', component: _QuickSpeech2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/phrases', component: _MyPhrases2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/phrases', component: _MyPhrases2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/constructor', component: _Constructor2.default })
 	      )
 	    )
 	  );
@@ -31062,10 +31065,6 @@
 	
 	var _actions = __webpack_require__(202);
 	
-	var _jwt_helper = __webpack_require__(201);
-	
-	var _jwt_helper2 = _interopRequireDefault(_jwt_helper);
-	
 	var _SpeakBox = __webpack_require__(295);
 	
 	var _SpeakBox2 = _interopRequireDefault(_SpeakBox);
@@ -31138,6 +31137,10 @@
 	
 	var _IconLink2 = _interopRequireDefault(_IconLink);
 	
+	var _SpeakBox = __webpack_require__(295);
+	
+	var _SpeakBox2 = _interopRequireDefault(_SpeakBox);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var DashIndex = function DashIndex(props) {
@@ -31205,7 +31208,7 @@
 	    { className: 'col-xs-3 icon-link', style: { backgroundColor: props.color }, to: props.pathTo },
 	    _react2.default.createElement(
 	      'h2',
-	      null,
+	      { className: 'icon-link-text' },
 	      props.title
 	    ),
 	    _react2.default.createElement('span', { className: props.icon })
@@ -31437,6 +31440,44 @@
 	}(_react2.default.Component);
 	
 	exports.default = MyPhrasesPage;
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _IconLink = __webpack_require__(302);
+	
+	var _IconLink2 = _interopRequireDefault(_IconLink);
+	
+	var _SpeakBox = __webpack_require__(295);
+	
+	var _SpeakBox2 = _interopRequireDefault(_SpeakBox);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ConstructorPage = function ConstructorPage() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      { className: 'text-center' },
+	      'Speech Constructor'
+	    )
+	  );
+	};
+	
+	exports.default = ConstructorPage;
 
 /***/ }
 /******/ ]);
