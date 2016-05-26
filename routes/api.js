@@ -19,35 +19,34 @@ function checkToken (req,res,next){
     knex('users').where({id: payload.id}).first().then(function (user) {
       if (user) {
         delete user.password_hash
-        res.status(200).send({user: user})
+        res.status(200).send({user})
       } else {
-        res.status(403).json({
+        res.status(403).send({
           error: "Invalid ID"
         })
       }
     })
   } else {
-      res.status(403).json({
+      res.status(403).send({
         error: "No token"
       })
     }
 }
 
-router.get('/me', checkToken);
-
 router.get('/', function(req, res, next) {
   res.status(222).json('Setup your SPA');
 });
 
+router.get('/me', checkToken);
+
 router.post('/signup', function(req, res, next) {
-  console.log(req.body);
   var errors = [];
 
   if (!req.body.email || !req.body.email.trim()) errors.push("Email can't be blank");
   if (!req.body.name || !req.body.name.trim()) errors.push("Name can't be blank");
   if (!req.body.password || !req.body.password.trim()) errors.push("Password can't be blank");
 
-  if (errors.length) {
+  if(errors.length) {
     console.log(errors);
     res.status(422).json({
       errors: errors
@@ -92,7 +91,9 @@ router.post('/signup', function(req, res, next) {
                 console.log("theres an email" + result);
                 var validPassword = bcrypt.compareSync(req.body.password, result.password_hash);
                 if (validPassword) {
-                  res.redirect('/')
+                  res.status(422).json({
+                    error: "Email Taken"
+                  })
                 }
                 else {
                   console.log(validPassword + "valid password was false");
@@ -115,13 +116,13 @@ router.post('/login', function(req, res, next) {
     .then(function (result) {
       if (result) {
         if (bcrypt.compareSync(req.body.password, result.password_hash)) {
-          delete result.password_hash
+          delete result.password_hash;
           res.json({user: result, token: jwt.sign({ id: result.id }, process.env.JWT_SECRET)})
         } else {
-          res.status(422).send({})
+          res.status(422).send({error: 'No Bueno'})
         }
       } else {
-        res.status(422).send({})
+        res.status(422).send({error: 'No Bueno'})
       }
     })
 });
