@@ -64,7 +64,7 @@ router.post('/signup', function(req, res, next) {
            var data = {
              name: req.body.name,
              email: req.body.email,
-             password_hash: passwordHash,
+             password_hash: passwordHash
            }
 
           return knex('users').insert(data)
