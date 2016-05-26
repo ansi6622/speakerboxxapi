@@ -13,7 +13,7 @@ function checkUser (data) {
 
 function checkToken (req,res,next){
   console.log("headers", req.headers);
-  if (req.headers.authorization) {
+  if(req.headers.authorization) {
     const token = req.headers.authorization.split(' ')[1];
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     knex('users').where({id: payload.id}).first().then(function (user) {
