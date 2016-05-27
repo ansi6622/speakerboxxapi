@@ -207,6 +207,20 @@ router.post('/categories/:user_id', function(req, res, next) {
   })
 });
 
+router.delete('/phrases/:id', function(req, res, next) {
+  return knex('phrases')
+    .where({id: req.params.id})
+    .del()
+    .returning('id')
+    .then(function(id){
+      if(id){
+        res.status(200).json({id});
+      } else {
+        res.status(404).json({error: 'wait wut'})
+      }
+    })
+});
+
 router.get('/categories/:id', function(req, res, next) {
   var isUser = req.params.id;
   var categoryList;
